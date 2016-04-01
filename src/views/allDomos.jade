@@ -1,0 +1,32 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+  nav
+    a(href="/login")
+      img#logo(src="/assets/img/face.png", alt="face logo")
+    .navlink
+      a(href="/logout") Log out
+    .navlink
+     a(href="/maker") Make a Domo
+    .navlink
+      a(href="/allDomos") View All Domos
+  section#allDomos
+    if !domos || domos.length == 0
+        div.domo
+            h3.emptyDomo No Domos yet
+    else
+        each val in domos
+            div.domo
+                img(class="domoFace", src="/assets/img/domoface.jpeg", alt="domo face")
+                h3.domoName Name: #{val.name}
+                h3.domoAge Age: #{val.age}
+                h3.domoHeight Height: #{val.height} inches
+                h3.domoWeight Weight: #{val.weight} lbs
+  #domoMessage
+    img#speech(src="/assets/img/speech.png", alt="speech box")
+    h3
+      span#errorMessage
+    img#domo(src="assets/img/domo.png", alt="domo")
+block scripts
+        script(src="/assets/maker.js")
